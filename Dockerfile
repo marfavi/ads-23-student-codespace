@@ -1,9 +1,8 @@
-# Use Alpine as the base image
-FROM alpine:latest
+# Use the eclipse-temurin:11-alpine as the base image
+FROM eclipse-temurin:11-alpine
 
-# Set environment variables for Python and Java versions
+# Set environment variables for Python version
 ENV PYTHON_VERSION 3.8.0
-ENV JAVA_VERSION 11
 
 # Install pyenv and dependencies
 RUN apk update && \
@@ -28,21 +27,14 @@ RUN pyenv global ${PYTHON_VERSION}
 # Install itu.algs4 library
 RUN pip install itu.algs4
 
-# Install OpenJDK
-RUN apk add --no-cache openjdk${JAVA_VERSION}-jre
-
 # Download the algs4.jar library
 RUN wget https://algs4.cs.princeton.edu/code/algs4.jar
 
 # Move the algs4.jar library to the lib directory of the openjdk-jre library
-RUN mv algs4.jar /usr/lib/jvm/java-${JAVA_VERSION}-openjdk/lib/
+RUN mv algs4.jar /usr/lib/jvm/java-11-openjdk/lib/
 
 # Configure the container to include the algs4.jar library in its classpath
-ENV CLASSPATH "$CLASSPATH:/usr/lib/jvm/java-${JAVA_VERSION}-openjdk/lib/algs4.jar"
-
-# Set the JAVA_HOME and PATH environment variables
-ENV JAVA_HOME /usr/lib/jvm/java-${JAVA_VERSION}-openjdk
-ENV PATH "$PATH:$JAVA_HOME/bin"
+ENV CLASSPATH "$CLASSPATH:/usr/lib/jvm/java-11-openjdk/lib/algs4.jar"
 
 # Create a working directory and set it as the working directory
 RUN mkdir /app
