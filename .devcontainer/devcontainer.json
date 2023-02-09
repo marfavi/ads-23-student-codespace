@@ -1,3 +1,10 @@
 {
-    "dockerFile": "Dockerfile"
+    "dockerFile": "Dockerfile",
+    "extensions": [
+        "ms-python.vscode-pylance",
+        "ms-python.isort",
+        "redhat.java",
+        "visualstudioexptteam.vscodeintellicode",
+        "vscjava.vscode-java-project"
+    ]
 }

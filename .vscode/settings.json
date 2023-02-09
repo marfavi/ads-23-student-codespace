@@ -1,6 +1,6 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "/usr/local/lib/algs4.jar"
+        "/usr/share/java/algs4.jar"
     ]
 }
